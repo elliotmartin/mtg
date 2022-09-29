@@ -143,7 +143,7 @@ class DraftGenerator(MTGDataGenerator):
             for col in data.columns
             if col.startswith(self.card_col_prefixes[0])
         ]
-        basics = ["plains", "island", "swamp", "mountain", "forest"]
+        basics = ["_plains", "_island", "_swamp", "_mountain", "_forest"]
         if self.exclude_basics:
             exclude_cards = basics
         else:
