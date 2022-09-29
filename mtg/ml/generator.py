@@ -74,7 +74,8 @@ class MTGDataGenerator(Sequence):
                 col
                 for col in data.columns
                 if col.startswith(prefix + "_")
-                and not any([x in col for x in exclude_cards] and col.split("_"[-1]) in exclude_cards)
+                and not any(["_" + x in col for x in exclude_cards])
+
             ]
             setattr(self, prefix, data[cols].values)
             if self.store_basics:
@@ -149,11 +150,13 @@ class DraftGenerator(MTGDataGenerator):
         else:
             exclude_cards = []
         for prefix in self.card_col_prefixes:
+            print("gen_global")
             cols = [
                 col
                 for col in data.columns
                 if col.startswith(prefix + "_")
-                and not any([x in col for x in exclude_cards] and col.split("_"[-1]) in exclude_cards)
+                and not any(["_"+x in col for x in exclude_cards])
+
             ]
             setattr(self, prefix, data[cols])
             if self.store_basics:
